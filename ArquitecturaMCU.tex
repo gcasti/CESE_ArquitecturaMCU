@@ -79,12 +79,20 @@ Su denominación ``R" proviene de \textit{Real Time}, se pueden encontrar en sis
 Son procesadores orientados a dispositivos de consumo masivo y sistemas
 embebidos compactos. Son procesadores de uso general diseñados para alta densidad de código y con gran cantidad de periféricos. Su denominación ``M" proviene de \textit{Microcontrollers}, se pueden encontrar en dispositivos como celulares o tables. 
 
-%\section*{Cortex M}
+\section*{Cortex M}
 %
 %\subsection*{1. Describa brevemente las diferencias entre las familias de procesadores Cortex M0, M3 y M4}
 %
 %\subsection*{2. ¿Por qué se dice que el set de instrucciones Thumb permite mayor densidad de código? Explique}
 %
-%\subsection*{3. ¿Qué entiende por arquitectura load-store? ¿Qué tipo de instrucciones no posee este tipo de arquitectura?}
+\subsection*{3. ¿Qué entiende por arquitectura load-store? ¿Qué tipo de instrucciones no posee este tipo de arquitectura?}
+
+
+Una arquitectura \textit{load-store} significa que para realizar una modificación de un dato almacenado debe cargarse previamente en un registro, procesarse y luego volver a escribirse en memoria utilizando una serie de operaciones separadas. 
+
+Por ejemplo, para incrementar un valor almacenado en una memoria SRAM, el procesador necesita usar una instrucción para leer el datos desde la SRAM y colocarlo en un registro interno, una segunda instrucción para incrementar el valor del registro y finalmente, una tercera instrucción para escribir el valor modificado en la posición de memoria donde se encontraba.  
+
+Dentro del set de instrucciones del dispositivo no existen instrucciones que permitan directamente modificar una valores del mapa memoria.
+
 
 \end{document}
