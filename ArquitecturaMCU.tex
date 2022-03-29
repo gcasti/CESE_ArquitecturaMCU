@@ -1,0 +1,90 @@
+\documentclass[10pt,a4paper,twoside,spanish]{article}	%Indica la clase de documento
+
+\pagestyle{plain}
+
+\usepackage[spanish,english]{babel}
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+
+
+\usepackage{amsmath,amssymb,amsfonts,latexsym,cancel}  
+\usepackage[table]{xcolor} 				%Para poner color en las tablas
+\usepackage{float}
+\setlength\unitlength{1mm}
+%*************** Agregados de formato********************
+%\usepackage{shortlst}					% Intems cortos
+\usepackage{multicol}					% Permite dividir en columnas
+\usepackage{wrapfig}					% Texto al lado de las figuras
+\usepackage[rftl]{floatflt}
+\usepackage{rotating}					% Rotar elementos
+\usepackage{subfig}					% Subfiguras
+\usepackage{anysize}					% Configurar margenes
+\marginsize{2 cm}{2 cm}{1 cm}{2 cm}
+\usepackage{multirow}
+%************************************************************
+%***** Encabezado y pie de pagina ***********************
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[HR]{Universidad de Buenos Aires} % Números de página en las esquinas de los encabezados
+\fancyhead[HL]{Carrera de Especialización en Sistemas Embebidos}
+
+\fancyfoot[FL]{Arquitectura de Microprocesadores Numérico} 
+\fancyfoot[FR]{\thepage} 
+
+\renewcommand{\headrulewidth}{0.6pt} % Ancho de la línea horizontal bajo el encabezado
+\renewcommand{\footrulewidth}{0.6pt} % Ancho de la línea horizontal sobre el pie (que en este ejemplo está vacío)
+\setlength{\headheight}{1.5\headheight} % Aumenta la altura del encabezado en una vez y media
+%************************************************************
+% Define el formato del título
+\newcommand{\titulo }[1]
+{\begin{center}
+	\huge	\textbf{#1}\\
+\end{center}
+}
+%************************************************************
+%************************************************************
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\section*{Preguntas orientadoras}
+
+\textbf{Describa brevemente los diferentes perfiles de familias de
+microprocesadores/microcontroladores de ARM. Explique alguna de sus diferencias
+características.}
+
+\subsubsection*{Cortex A:}
+Son procesadores de alto rendimiento optimizados para aplicaciones que emplean un sistema operativo de propósito general en sistemas embebidos de alta performance. 
+
+Su denominación ``A" proviene de \textit{Application}, se pueden encontrar en dispositivos como celulares o tables.  
+ 
+Se destaca la optimización para ejecutar diversas aplicaciones al mismo tiempo a costa de una disminución del tiempo de respuesta de las mismas, aspecto secundario en dispositivo de usuario. 
+
+
+\subsubsection*{Cortex R:}
+
+Son procesadores orientados a sistemas de tiempo real donde prima la
+necesidad de implementar soluciones con requerimientos temporales estrictos.
+
+En los sistemas de tiempo real la respuesta a eventos o estímulos debe ser en un tiempo acotado y preestablecido comportándose de forma determinística.  
+
+Su denominación ``R" proviene de \textit{Real Time}, se pueden encontrar en sistemas críticos, como dispositivos médicos o sistemas de operación automovilísticos.
+
+
+\subsubsection*{Cortex M:}
+
+
+Son procesadores orientados a dispositivos de consumo masivo y sistemas
+embebidos compactos. Son procesadores de uso general diseñados para alta densidad de código y con gran cantidad de periféricos. Su denominación ``M" proviene de \textit{Microcontrollers}, se pueden encontrar en dispositivos como celulares o tables. 
+
+%\section*{Cortex M}
+%
+%\subsection*{1. Describa brevemente las diferencias entre las familias de procesadores Cortex M0, M3 y M4}
+%
+%\subsection*{2. ¿Por qué se dice que el set de instrucciones Thumb permite mayor densidad de código? Explique}
+%
+%\subsection*{3. ¿Qué entiende por arquitectura load-store? ¿Qué tipo de instrucciones no posee este tipo de arquitectura?}
+
+\end{document}
