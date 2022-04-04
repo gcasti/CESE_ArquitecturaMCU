@@ -108,7 +108,13 @@ La partición del mapa de memoria está determinada por el fabricante de cada mi
 
 %\subsection{5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP?}
 
-%\subsection*{6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo
-%privilegiado a no priviligiado y nuevamente a privilegiado}
+\subsection*{6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo privilegiado a no privilegiado y nuevamente a privilegiado}
+
+La familia de procesadores Cortex-M3/4 poseen dos modos de operación, modo privilegiado y no privilegiado, también llamado modo usuario.
+
+El modo de funcionamiento privilegiado se caracteriza porque permite el acceso a todo el mapa de memoria por parte de la/s aplicación/es del usuario. En contraposición, en el modo de operación de usuario existen áreas determinadas de memoria protegidas que no son posibles acceder durante la ejecución del programa.
+
+Una aplicación típica del uso de los modos de usuario, se da al emplear un sistema operativo. Es deseable que las tareas o aplicación del usuario no accedan a los componentes del sistema operativo ubicandolo en un área protegida de memoria solo accesible en el modo de privilegiado.     
+
 
 \end{document}
