@@ -84,7 +84,10 @@ embebidos compactos. Son procesadores de uso general diseñados para alta densid
 %\subsection*{1. Describa brevemente las diferencias entre las familias de procesadores Cortex M0, M3 y M4}
 %
 \subsection*{2. ¿Por qué se dice que el set de instrucciones Thumb permite mayor densidad de código? Explique}
-%
+
+
+
+
 \subsection*{3. ¿Qué entiende por arquitectura load-store? ¿Qué tipo de instrucciones no posee este tipo de arquitectura?}
 
 
@@ -99,7 +102,9 @@ Dentro del set de instrucciones del dispositivo no existen instrucciones que per
 
 En la familia de procesadores Cortex-M el mapa de memoria esta compuesto por un ancho de palabra de 32 bits y puede contener hasta 4 Gbytes de espacio, limite impuesto por la cantidad de direcciones posibles que se pueden acceder con un 32 bits de direccionamiento ($2^{32}=4.29 Gbits$).
 
-El mapa de memoria se encuentra particionado en diferentes secciones donde se alojan (\textit{"mapean"}) los diversos componentes del sistema, como memoria flash, memoria SRAM, periféricos, etc. Exceptuando restricciones especificas sobre algunas zonas de memoria es posible acceder a todos los registros mediante un mismo bus de datos y set de instrucciones. 
+El mapa de memoria se encuentra particionado en diferentes secciones donde se alojan (\textit{"mapean"}) todos los componentes del sistema, como memoria flash, memoria SRAM, periféricos, etc. Exceptuando restricciones especificas sobre algunas zonas de memoria es posible acceder a todos los registros mediante un mismo bus de datos y set de instrucciones, característica que permite acceder fácilmente al contenido o registro del dispositivo empleando punteros en lenguaje C.  
+
+La partición del mapa de memoria está determinada por el fabricante de cada microntrolador que contiene un procesador ARM y debe consultarse en la hoja de datos del dispositivo.
 
 %\subsection{5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP?}
 
