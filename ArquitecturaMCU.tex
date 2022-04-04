@@ -83,7 +83,7 @@ embebidos compactos. Son procesadores de uso general diseñados para alta densid
 %
 %\subsection*{1. Describa brevemente las diferencias entre las familias de procesadores Cortex M0, M3 y M4}
 %
-%\subsection*{2. ¿Por qué se dice que el set de instrucciones Thumb permite mayor densidad de código? Explique}
+\subsection*{2. ¿Por qué se dice que el set de instrucciones Thumb permite mayor densidad de código? Explique}
 %
 \subsection*{3. ¿Qué entiende por arquitectura load-store? ¿Qué tipo de instrucciones no posee este tipo de arquitectura?}
 
@@ -94,5 +94,16 @@ Por ejemplo, para incrementar un valor almacenado en una memoria SRAM, el proces
 
 Dentro del set de instrucciones del dispositivo no existen instrucciones que permitan directamente modificar una valores del mapa memoria.
 
+
+\subsection*{4. ¿Cómo es el mapa de memoria de la familia?}
+
+En la familia de procesadores Cortex-M el mapa de memoria esta compuesto por un ancho de palabra de 32 bits y puede contener hasta 4 Gbytes de espacio, limite impuesto por la cantidad de direcciones posibles que se pueden acceder con un 32 bits de direccionamiento ($2^{32}=4.29 Gbits$).
+
+El mapa de memoria se encuentra particionado en diferentes secciones donde se alojan (\textit{"mapean"}) los diversos componentes del sistema, como memoria flash, memoria SRAM, periféricos, etc. Exceptuando restricciones especificas sobre algunas zonas de memoria es posible acceder a todos los registros mediante un mismo bus de datos y set de instrucciones. 
+
+%\subsection{5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP?}
+
+%\subsection*{6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo
+%privilegiado a no priviligiado y nuevamente a privilegiado}
 
 \end{document}
