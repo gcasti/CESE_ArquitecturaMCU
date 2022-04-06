@@ -80,9 +80,9 @@ Son procesadores orientados a dispositivos de consumo masivo y sistemas
 embebidos compactos. Son procesadores de uso general diseñados para alta densidad de código y con gran cantidad de periféricos. Su denominación ``M" proviene de \textit{Microcontrollers}, se pueden encontrar en dispositivos como celulares o tables. 
 
 \section*{Cortex M}
-%
-%\subsection*{1. Describa brevemente las diferencias entre las familias de procesadores Cortex M0, M3 y M4}
-%
+
+\subsection*{1. Describa brevemente las diferencias entre las familias de procesadores Cortex M0, M3 y M4}
+
 \subsection*{2. ¿Por qué se dice que el set de instrucciones Thumb permite mayor densidad de código? Explique}
 
 
@@ -109,7 +109,7 @@ El mapa de memoria se encuentra particionado en diferentes secciones donde se al
 
 La partición del mapa de memoria está determinada por el fabricante de cada microntrolador que contiene un procesador ARM y debe consultarse en la hoja de datos del dispositivo.
 
-%\subsection{5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP?}
+\subsection*{5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP?}
 
 \subsection*{6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo privilegiado a no privilegiado y nuevamente a privilegiado}
 
@@ -120,17 +120,28 @@ El modo de funcionamiento privilegiado se caracteriza porque permite el acceso a
 Una aplicación típica del uso de los modos de usuario, se da al emplear un sistema operativo. Es deseable que las tareas o aplicación del usuario no accedan a los componentes del sistema operativo ubicandolo en un área protegida de memoria solo accesible en el modo de privilegiado.     
 
 \subsection*{7. ¿Qué se entiende por modelo de registros ortogonal? Dé un ejemplo}
-\subsection*{8. ¿Qué ventajas presenta el uso de intrucciones de ejecución condicional (IT)? Dé un ejemplo}
-\subsection*{9. Describa brevemente las excepciones más prioritarias (reset, NMI, Hardfault).}
+
+\subsection*{8. ¿Qué ventajas presenta el uso de instrucciones de ejecución condicional (IT)? Dé un ejemplo}
+
+\subsection*{9. Describa brevemente las excepciones más prioritarias (reset, NMI, Hardfault)}
+
 \subsection*{10. Describa las funciones principales de la pila. ¿Cómo resuelve la arquitectura el llamado a funciones y su retorno?}
-\subsection*{11. Describa la secuencia de reset del microprocesador.}
+
+\subsection*{11. Describa la secuencia de reset del microprocesador}
 \subsection*{12. ¿Qué entiende por “core peripherals”? ¿Qué diferencia existe entre estos y el resto de los periféricos?}
+
 \subsection*{13. ¿Cómo se implementan las prioridades de las interrupciones? Dé un ejemplo}
+
 \subsection*{14. ¿Qué es el CMSIS? ¿Qué función cumple? ¿Quién lo provee? ¿Qué ventajas aporta?}
+
 \subsection*{15. Cuando ocurre una interrupción, asumiendo que está habilitada ¿Cómo opera el microprocesador para atender a la subrutina correspondiente? Explique con un ejemplo}
+
 \subsection*{17. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?}
-\subsection*{16. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.}
+
+\subsection*{16. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival}
+
 \subsection*{17. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?}
+
 \subsection*{18. ¿Qué funciones cumple la unidad de protección de memoria (MPU)?}
 
 La unidad \textit{Memory Protection Unit}(MPU) consiste de un área de memoria que integra mecanismos de protección de forma que no sea accesible en todos los modos de ejecución del código de usuario. 
@@ -140,7 +151,16 @@ La inclusión de la unidad MPU es una característica opcional en la familia de 
 Un escenario de uso muy común resulta en sistemas embebidos que implementan un sistemas operativo, usualmente se aloja en un área de memoria con privilegios que no pueda ser accedida por las otras tareas del usuario. Otro escenario de uso es la creación de regiones de memoria de solo lectura, que permitan prevenir borrados accidentales de memoria SRAM o sobreescritura de código de instrucciones.
 
 \subsection*{19. ¿Cuántas regiones pueden configurarse como máximo? ¿Qué ocurre en caso de haber solapamientos de las regiones? ¿Qué ocurre con las zonas de memoria no cubiertas por las regiones definidas?}
+
+La unidad MPU en los procesadores Cortex M3 y M4 soporta hasta ocho regiones programables de memoria, cada una con dirección de inicio, tamaño y configuraciones programables.
+
+Las regiones de memoria de la MPU pueden superponerse. Si una ubicación de memoria se encuentra dentro de dos regiones programadas, los atributos y permisos del acceso a la memoria se tomarán de la región con el número más alto.
+
+Por ejemplo, si una dirección de transferencia está dentro del rango de direcciones definido para la región 1 y la región 4, se usará la configuración de la región 4.
+
+
 \subsection*{20. ¿Para qué se suele utilizar la excepción PendSV? ¿Cómo se relaciona su uso con el resto de las excepciones? Dé un ejemplo}
+
 \subsection*{21. ¿Para qué se suele utilizar la excepción SVC? Expliquelo dentro de un marco de un sistema operativo embebido.}
 
 
