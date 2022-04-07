@@ -106,8 +106,11 @@ int main(void)
 
   uint32_t longN = 5;
   uint32_t vector1_32[longN];
+  uint32_t vector2_32[5] = {1,2,3,4,5};
 
   zeros(vector1_32, longN);
+
+  productoEscalar32(vector2_32, vector1_32, longN, 10);
 
 
 
