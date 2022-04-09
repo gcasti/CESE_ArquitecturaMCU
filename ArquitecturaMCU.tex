@@ -110,6 +110,10 @@ La partición del mapa de memoria está determinada por el fabricante de cada mi
 
 \subsection*{5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP?}
 
+Las principales ventajas de la utilización de los “shadowed pointers” que puede traducirse como punteros ocultos o sombreados se dan en sistemas embebidos que utilicen sistemas operativos o RTOS. En estos sistemas el manejador de excepciones utiliza el MSP con un stack principal, mientras que las tareas emplean el PSP con un espacio de memoria asignado funcionando como stack para cada una. Cuando se realiza un cambio de contexto se utiliza el PSP  actualizando el stack de las tareas, sin alterar el MSP y stack del sistema operativo.
+Esta forma de operación se traduce en un sistema más robusto y confiable. Si una tarea produce un error que genera la corrupción de los datos de su stack, el sistema operativo puede recuperar su estado empleando el MSP al conservar el stack principal sin alteraciones.
+
+
 \subsection*{6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo privilegiado a no privilegiado y nuevamente a privilegiado}
 
 La familia de procesadores Cortex-M3/4 poseen dos modos de operación, modo privilegiado y no privilegiado, también llamado modo usuario.
