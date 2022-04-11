@@ -159,6 +159,14 @@ Después de un proceso de reset o inicio del sistema, todas las interrupciones s
 
 \subsection*{17. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?}
 
+El SysTick es un temporizador decremental de 24 bits que puede operar a la frecuencia del reloj del sistema. Es incorporado como periférico interno en los procesadores Cortex-M, integrado como parte del módulo NVIC y puede generar una excepción del sistema de forma periódica.
+
+En dispositivos que incorporan un sistema operativo se utiliza para realizar una interrupción periódica que permita la ejecución de diferentes tareas implentando múltiples cambios de contexto en modo de ejecución de usuario. 
+
+La incorporación del periférico en el procesador favorece la portabilidad del software entre diferentes dispositivos Cortex-M3/M4. Utilizar un temporizador externo para un sistema operativo embebido, implica una mayor cantidad de requerimientos o configuraciones que debería definir e implementar el fabricante del microntrolador y posteriormente el diseñador del software.  
+
+
+
 \subsection*{18. ¿Qué funciones cumple la unidad de protección de memoria (MPU)?}
 
 La unidad \textit{Memory Protection Unit}(MPU) consiste de un área de memoria que integra mecanismos de protección de forma que no sea accesible en todos los modos de ejecución del código de usuario. 
