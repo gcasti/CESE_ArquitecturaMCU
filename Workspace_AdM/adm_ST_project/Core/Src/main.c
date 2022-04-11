@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include <adm_functions.h>
+#include "asm_func.h"
 #include "main.h"
 #include "string.h"
 
@@ -117,9 +118,10 @@ int main(void)
   uint16_t vectorData3_16[5]= {1,2,100,4000,5000};
   uint16_t vectorData4_16[5];
 
-/* Se comprueba el funcionamiento de la función del ejercicio 1 */
+/* Se comprueba el funcionamiento de la función en C del ejercicio 1 */
   zeros(vectorData1_32, longN);
-
+  /* Se comprueba el funcionamiento de la función en C del ejercicio 1 */
+  asm_zeros(vectorData1_32, longN);
 
 /* Se comprueba el funcionamiento de la función del ejercicio 2 */
   escalar_32=1000;
