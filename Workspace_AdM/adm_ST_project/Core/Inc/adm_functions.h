@@ -19,4 +19,7 @@ void productoEscalar32 (uint32_t * vectorIn, uint32_t * vectorOut, uint32_t long
 /* Función ejercicio 3 */
 void productoEscalar16 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar);
 
+/* Función ejercicio 4 */
+void productoEscalar12 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar);
+
 #endif /* INC_ADM_FUNCTIONS_H_ */

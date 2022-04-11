@@ -105,18 +105,34 @@ int main(void)
 
 
   uint32_t longN = 5;
-  uint32_t vector1_32[longN];
-  uint32_t vector2_32[5] = {1,2,3,4,5};
+  uint32_t vectorData1_32[longN];
+  uint32_t vectorData2_32[5] = {100000,200000,300000,400000,500000};
 
-  uint16_t vector1_16[longN];
-  uint16_t vector2_16[5] = {5,4,3,2,1};
+  uint32_t escalar_32 = 0;
 
-  zeros(vector1_32, longN);
+  uint16_t vectorData1_16[5] = {1,2,100,4000,5000};
+  uint16_t vectorData2_16[5];
+  uint32_t escalar_16 = 0;
 
-  productoEscalar32(vector2_32, vector1_32, longN, 10);
+  uint16_t vectorData3_16[5]= {1,2,100,4000,5000};
+  uint16_t vectorData4_16[5];
+
+/* Se comprueba el funcionamiento de la función del ejercicio 1 */
+  zeros(vectorData1_32, longN);
 
 
-  productoEscalar16(vector2_16, vector1_16, longN, 10);
+/* Se comprueba el funcionamiento de la función del ejercicio 2 */
+  escalar_32=1000;
+  productoEscalar32(vectorData2_32, vectorData1_32, longN, escalar_32);
+
+
+/* Se comprueba el funcionamiento de la función del ejercicio 3 */
+  escalar_16=1000;
+  productoEscalar16(vectorData1_16, vectorData2_16, longN, escalar_16);
+
+/* Se comprueba el funcionamiento de la función del ejercicio 4 */
+  escalar_16=1000;
+  productoEscalar12(vectorData3_16, vectorData4_16, longN, escalar_16);
 
   /* USER CODE END 2 */
 

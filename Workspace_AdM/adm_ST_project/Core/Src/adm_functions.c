@@ -32,3 +32,15 @@ void productoEscalar16 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t long
 		vectorOut[i] = escalar*vectorIn[i];
 	}
 }
+
+void productoEscalar12 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar)
+{
+	int i = 0;
+
+	escalar &= 0x0FFF;
+	for(i=0 ; i<longitud ; i++){
+		vectorIn[i] &= 0x0FFF;
+		vectorOut[i] = escalar*vectorIn[i];
+		vectorOut[i] &= 0x0FFF;
+	}
+}
