@@ -6,6 +6,7 @@
 .global asm_svc
 .global asm_sum
 .global asm_zeros
+.global asm_productoEscalar32
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
@@ -27,7 +28,7 @@
 @
 @ Valor de retorno:
 @   r0: resultado de la suma de firstOperand y secondOperand
-@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .thumb_func
     asm_sum:
         add r0, r1  @ r0 = r0 + r1
@@ -46,7 +47,6 @@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
 @   void asm_zeros (uint32_t * vector, uint32_t longitud);
-
 @
 @ Parametros recibidos:
 @   r0: puntero al vector
@@ -54,14 +54,36 @@
 @
 @ Valor de retorno:
 @   r0: NULL
-@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 .thumb_func
 	asm_zeros:
 		mov r2, 0
 	.asm_zeros_for:
-		str r2, [r0]	// [] referencia al contenido del puntero
+		str r2, [r0],4	// [] referencia al contenido del puntero
 		subs r1, 1
 		bne .asm_zeros_for
 		bx lr
 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void asm_productoEscalar32 (uint32_t * vectorIn, uint32_t * vectorOut, uint32_t longitud, uint32_t escalar)
+@
+@ Parametros recibidos:
+@   r0: puntero al vector de entrada
+@   r1:	puntero al vector que se utiliza como salida
+@	r2: longitud del vector
+@	r3: escalar
+@
+@ Valor de retorno:
+@   r0: NULL
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.thumb_func
+	asm_productoEscalar32:
+	.asm_producto_for:
+		ldr r5,[r0],4
+		mul r4,r5,r3
+		str r4,[r1],4
+		subs r2,1
+		bne .asm_producto_for
+		bx lr
