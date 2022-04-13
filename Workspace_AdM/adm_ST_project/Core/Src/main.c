@@ -113,7 +113,7 @@ int main(void)
   uint32_t escalar_32 = 0;
 
   uint16_t vectorData1_16[5] = {1,2,100,4000,5000};
-  uint16_t vectorData2_16[5];
+  uint16_t vectorData2_16[5]= {0,0,0,0,0};
   uint32_t escalar_16 = 0;
 
   uint16_t vectorData3_16[5]= {1,2,100,4000,5000};
@@ -126,7 +126,7 @@ int main(void)
 
 /* Se comprueba el funcionamiento de la función en C del ejercicio 2 */
   escalar_32=4;
-  productoEscalar32(vectorData0_32, vectorData2_32, longN, escalar_32);
+  productoEscalar32(vectorData0_32, vectorData1_32, longN, escalar_32);
 
   /* Se comprueba el funcionamiento de la función en ASM ejercicio 2 */
   asm_zeros(vectorData2_32, longN);
@@ -136,6 +136,9 @@ int main(void)
 /* Se comprueba el funcionamiento de la función del ejercicio 3 */
   escalar_16=1000;
   productoEscalar16(vectorData1_16, vectorData2_16, longN, escalar_16);
+
+  asm_productoEscalar16(vectorData1_16, vectorData3_16, longN, escalar_16);
+
 
 /* Se comprueba el funcionamiento de la función del ejercicio 4 */
   escalar_16=1000;
