@@ -106,7 +106,7 @@ En la familia de procesadores Cortex-M el mapa de memoria esta compuesto por un 
 
 El mapa de memoria se encuentra particionado en diferentes secciones donde se alojan (\textit{"mapean"}) todos los componentes del sistema, como memoria flash, memoria SRAM, periféricos, etc. Exceptuando restricciones especificas sobre algunas zonas de memoria es posible acceder a todos los registros mediante un mismo bus de datos y set de instrucciones, característica que permite acceder fácilmente al contenido o registro del dispositivo empleando punteros en lenguaje C.  
 
-La partición del mapa de memoria está determinada por el fabricante de cada microntrolador que contiene un procesador ARM y debe consultarse en la hoja de datos del dispositivo.
+La partición del mapa de memoria está determinada por el fabricante de cada microcontrolador que contiene un procesador ARM y debe consultarse en la hoja de datos del dispositivo.
 
 \subsection*{5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP?}
 
@@ -187,6 +187,18 @@ Por ejemplo, si una dirección de transferencia está dentro del rango de direcc
 \subsection*{20. ¿Para qué se suele utilizar la excepción PendSV? ¿Cómo se relaciona su uso con el resto de las excepciones? Dé un ejemplo}
 
 \subsection*{21. ¿Para qué se suele utilizar la excepción SVC? Expliquelo dentro de un marco de un sistema operativo embebido.}
+
+La excepción SVC\textit{(Supervisor Call)} es de tipo 11 y su nivel de prioridad puede ser programado. Puede dispararse por la instrucción de software SVC y posee un comportamiento levemente distinto a las interrupciones de software del módulo NVIC(por ejemplo, \textit{Software Trigger Interrupt Register,STIR}). Las interrupciones pueden ser imprecisas debido a que se ejecutan algunas instrucciones antes de su atención, por ejemplo verificación de la existencia de otra interrupción pendiente. La excepción SVC es precisa y se ejecuta inmediatamente luego de ser llamada, salvo que haya otra excepción de mayor prioridad.
+
+En muchos sistemas embebido que poseen un sistema operativo, este mecanismo se suele utilizar para que las tareas de usuario puedan acceder a los recursos del sistema, manteniendo la seguridad y robustez.
+
+Generalmente, el acceso a los recursos de hardware es gestionado por el sistema operativo en modo no privilegiado usando la MPU. Las tareas de la aplicación (que se ejecutan en modo no privilegiado) podrían acceder a los recursos protegidos mediante un servicio del sistema operativo vía la SVC. Con este mecanismo el acceso es más robusto y seguro impidiendo acceso no autorizados a recursos críticos.  
+
+
+Otra ventaja de este mecanismo de acceso es que el programador de las tareas de usuario puede abstraerse de los detalles del acceso al hardware ya que el sistema operativo es quién provee el servicio necesario para la excepción SVC(mediante el \textit{driver} del periférico) facilitando el desarrollo de las aplicación.
+
+ 
+
 
 
 \end{document}
