@@ -136,14 +136,16 @@ int main(void)
 /* Se comprueba el funcionamiento de la función del ejercicio 3 */
   escalar_16=1000;
   productoEscalar16(vectorData1_16, vectorData2_16, longN, escalar_16);
-
+  /* Se comprueba el funcionamiento de la función en ASM ejercicio 3 */
   asm_productoEscalar16(vectorData1_16, vectorData3_16, longN, escalar_16);
 
 
 /* Se comprueba el funcionamiento de la función del ejercicio 4 */
   escalar_16=1000;
-  productoEscalar12(vectorData3_16, vectorData4_16, longN, escalar_16);
+  productoEscalar12(vectorData1_16, vectorData2_16, longN, escalar_16);
 
+/* Se comprueba el funcionamiento de la función en ASM ejercicio 4 */
+  asm_productoEscalar12(vectorData1_16, vectorData3_16, longN, escalar_16);
   /* USER CODE END 2 */
 
   /* Infinite loop */

@@ -8,6 +8,7 @@
 .global asm_zeros
 .global asm_productoEscalar32
 .global	asm_productoEscalar16
+.global asm_productoEscalar12
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
@@ -90,7 +91,6 @@
 		bne .asm_producto32_for
 		pop {r4}
 		bx lr
-
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
 @	 void productoEscalar16 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar);
@@ -107,11 +107,38 @@
 .thumb_func
 	asm_productoEscalar16:
 		push {r4}
-	.asm_producto12_for:
+	.asm_producto16_for:
 		ldrh r4,[r0],2
 		mul r4,r3
 		strh r4,[r1],2
 		subs r2,1
-		bne .asm_producto12_for
+		bne .asm_producto16_for
 		pop {r4}
+		bx lr
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@	 void asm_productoEscalar12 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar);
+@
+@ Parametros recibidos:
+@   r0: puntero al vector de entrada
+@   r1:	puntero al vector que se utiliza como salida
+@	r2: longitud del vector
+@	r3: escalar
+@
+@ Valor de retorno:
+@   r0: NULL
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.thumb_func
+	asm_productoEscalar12:
+		push {r4,r5}
+	.asm_producto12_for:
+		ldrh r4,[r0],2		@ carga el valor de un dato del vector
+		mov r5, 0x0FFF		@ carga la máscara en un registro
+		and r4,r5			@ toma los 12 bits del dato
+		mul r4,r3			@ realiza la multiplicación
+		and r4,r5			@ descarla los bits superiores si hubo overflow
+		strh r4,[r1],2
+		subs r2,1
+		bne .asm_producto12_for
+		pop {r4,r5}
 		bx lr
