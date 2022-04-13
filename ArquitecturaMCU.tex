@@ -142,7 +142,21 @@ Un modelo de registro ortogonales permite que cualquier instrucción que utilice
 \subsection*{10. Describa las funciones principales de la pila. ¿Cómo resuelve la arquitectura el llamado a funciones y su retorno?}
 
 \subsection*{11. Describa la secuencia de reset del microprocesador}
+
 \subsection*{12. ¿Qué entiende por “core peripherals”? ¿Qué diferencia existe entre estos y el resto de los periféricos?}
+
+Se entiende como \textit{"core peripherals"} aquellos componentes que forman parte del procesador pero no son el núcleo en si mismo. Su objetivo principal es brindar soporte y ampliar las capacidades del procesador generalmente implementando funcionalidades específicas. Algunos ejemplos son:
+\begin{itemize}
+
+\item NVIC (Nested Vector Interrupt Controller).
+\item SysTick (System timer).
+\item System Control Block (SCB)
+\item MPU (Memory Protection Unit).
+\end{itemize}
+
+La integración de estos periféricos favorece a la portabilidad de software dentro de la familia de procesadores de ARM. La principal diferencia con el resto de los periféricos es que están orientados a interactuar con el procesador en cambio los periféricos genéricos se orientan a interactuar con el entorno implementando funcionalidades específicas como UART, ADCs, SPI, GIOP, etc.
+
+
 
 \subsection*{13. ¿Cómo se implementan las prioridades de las interrupciones? Dé un ejemplo}
 
