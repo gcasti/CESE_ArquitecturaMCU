@@ -147,12 +147,25 @@ int main(void)
 // Se comprueba el funcionamiento de la función en ASM ejercicio 4
   asm_productoEscalar12(vectorData1_16, vectorData3_16, longN, escalar_16);*/
 
- /* Ejercicio 5 */
-#define N 10
+/*************************************************************************
+// Ejercicio 5
+  #define N 10
   uint16_t testIN[N]={1,2,3,4,5,6,7,8,9,10};
   uint16_t testOUT1[N];
 
   filtroVentana10(testIN, testOUT1, N);
+*************************************************************************/
+/*************************************************************************
+// Ejercicio 6*/
+  #define N 10
+  int32_t testIN[N]={654265,2,3,4,5,6,7,8,9,10};
+  int16_t testOUT[N];
+  uint32_t longitud=N;
+
+  pack32to16 (testIN, testOUT, longitud);
+/*************************************************************************/
+
+
 
   /* USER CODE END 2 */
 
