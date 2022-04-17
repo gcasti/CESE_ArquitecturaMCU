@@ -166,7 +166,7 @@ int main(void)
   pack32to16 (testIN, testOUT, longitud);
 /*************************************************************************/
 /*************************************************************************
-// Ejercicio 7
+// Ejercicio 7*/
 
 #define N 10
 #define N_MAX 100
@@ -177,7 +177,8 @@ int main(void)
   for(int i=0 ; i<longitud ; i++ ){
 	testIN[i]= rand() % N_MAX;
   }
-  maximo=max(testIN, longitud);
+ // maximo=max(testIN, longitud);
+  maximo=asm_max(testIN, longitud);
 /*************************************************************************/
 /*************************************************************************
 // Ejercicio 8
@@ -196,19 +197,21 @@ int main(void)
   downsampleM(testIN, testOUT, longitud, M);
 /*************************************************************************/
 /*************************************************************************
-// Ejercicio 9 */
+// Ejercicio 9
 
 #define N 10
 
-  uint16_t testIN[N];
+  uint16_t testIN1[N],testIN2[N];
   uint32_t longitud=N;
 
   // Se carga el vector de test
   for(int i=0 ; i<longitud ; i++ ){
-	  testIN[i]= i;
+	  testIN1[i]= i;
+	  testIN2[i]= i;
   }
 
-  invertir(testIN, longitud);
+  invertir(testIN1, longitud);
+  asm_invertir(testIN2, longitud);
 
 /*************************************************************************/
 
