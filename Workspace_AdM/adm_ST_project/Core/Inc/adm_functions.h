@@ -28,6 +28,7 @@ void filtroVentana10(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitu
 /* Función ejercicio 6 */
 void pack32to16 (int32_t * vectorIn, int16_t *vectorOut, uint32_t longitud);
 
-
+/* Función ejercicio 7 */
+int32_t max (int32_t * vectorIn, uint32_t longitud);
 
 #endif /* INC_ADM_FUNCTIONS_H_ */

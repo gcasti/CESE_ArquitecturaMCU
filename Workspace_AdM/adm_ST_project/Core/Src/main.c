@@ -21,6 +21,7 @@
 #include "asm_func.h"
 #include "main.h"
 #include "string.h"
+#include <stdlib.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -156,7 +157,7 @@ int main(void)
   filtroVentana10(testIN, testOUT1, N);
 *************************************************************************/
 /*************************************************************************
-// Ejercicio 6*/
+// Ejercicio 6
   #define N 10
   int32_t testIN[N]={654265,2,3,4,5,6,7,8,9,10};
   int16_t testOUT[N];
@@ -164,8 +165,20 @@ int main(void)
 
   pack32to16 (testIN, testOUT, longitud);
 /*************************************************************************/
+/*************************************************************************
+// Ejercicio 7 */
 
+#define N 10
+#define N_MAX 100
+  int32_t maximo,testIN[N];
+  uint32_t longitud=N;
 
+  // Se carga el vector de test con números aleatorios para buscar el máximo
+  for(int i=0 ; i<longitud ; i++ ){
+	testIN[i]= rand() % N_MAX;
+  }
+  maximo=max(testIN, longitud);
+/*************************************************************************/
 
   /* USER CODE END 2 */
 
