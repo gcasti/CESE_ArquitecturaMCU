@@ -105,3 +105,14 @@ void downsampleM (int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, ui
 	}
 }
 
+/* Función ejercicio 9 */
+void invertir (uint16_t * vector, uint32_t longitud)
+{
+	uint16_t aux;
+
+	for(int i=0 ; i<longitud/2 ; i++){
+		aux = vector[i];
+		vector[i] = vector[longitud-1-i];
+		vector[longitud-1-i]=aux;
+	}
+}

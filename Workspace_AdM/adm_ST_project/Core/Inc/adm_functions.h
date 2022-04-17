@@ -34,4 +34,7 @@ int32_t max (int32_t * vectorIn, uint32_t longitud);
 /* Función ejercicio 8 */
 void downsampleM (int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, uint32_t N);
 
+/* Función ejercicio 9 */
+void invertir (uint16_t * vector, uint32_t longitud);
+
 #endif /* INC_ADM_FUNCTIONS_H_ */

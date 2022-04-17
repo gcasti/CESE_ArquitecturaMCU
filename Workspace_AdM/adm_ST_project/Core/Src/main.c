@@ -180,7 +180,7 @@ int main(void)
   maximo=max(testIN, longitud);
 /*************************************************************************/
 /*************************************************************************
-// Ejercicio 8 */
+// Ejercicio 8
 
 #define N 15		// Cantidad de elementos utilizados para test
 #define N_MAX 100
@@ -193,10 +193,26 @@ int main(void)
 	  testIN[i]= rand() % N_MAX;
   }
 
-
-
   downsampleM(testIN, testOUT, longitud, M);
-  /*************************************************************************/
+/*************************************************************************/
+/*************************************************************************
+// Ejercicio 9 */
+
+#define N 10
+
+  uint16_t testIN[N];
+  uint32_t longitud=N;
+
+  // Se carga el vector de test
+  for(int i=0 ; i<longitud ; i++ ){
+	  testIN[i]= i;
+  }
+
+  invertir(testIN, longitud);
+
+/*************************************************************************/
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
