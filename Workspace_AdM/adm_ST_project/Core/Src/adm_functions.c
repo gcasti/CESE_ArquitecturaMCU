@@ -44,3 +44,26 @@ void productoEscalar12 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t long
 		vectorOut[i] &= 0x0FFF;
 	}
 }
+
+#define M 3
+
+void filtroVentana10(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitudVectorIn)
+{
+	int n=0 , k=0, pos=0,suma=0;
+
+    for(n=0 ; n < longitudVectorIn; n++ )
+    {
+        suma = 0;
+        for(k=n ; k < n+M ; k++)
+        {
+            pos=k;
+        	if(pos > longitudVectorIn-1)
+        	{
+            	pos -= longitudVectorIn;
+            }
+            suma += vectorIn[pos];
+        }
+        vectorOut[n]= suma/M;
+    }
+}
+
