@@ -166,7 +166,7 @@ int main(void)
   pack32to16 (testIN, testOUT, longitud);
 /*************************************************************************/
 /*************************************************************************
-// Ejercicio 7 */
+// Ejercicio 7
 
 #define N 10
 #define N_MAX 100
@@ -179,7 +179,24 @@ int main(void)
   }
   maximo=max(testIN, longitud);
 /*************************************************************************/
+/*************************************************************************
+// Ejercicio 8 */
 
+#define N 15		// Cantidad de elementos utilizados para test
+#define N_MAX 100
+#define M 4			// Valor a decimar
+  int32_t testIN[N],testOUT[N];
+  uint32_t longitud=N;
+
+  // Se carga el vector de test con números aleatorios para buscar el máximo
+  for(int i=0 ; i<longitud ; i++ ){
+	  testIN[i]= rand() % N_MAX;
+  }
+
+
+
+  downsampleM(testIN, testOUT, longitud, M);
+  /*************************************************************************/
   /* USER CODE END 2 */
 
   /* Infinite loop */

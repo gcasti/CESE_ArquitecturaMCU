@@ -44,7 +44,7 @@ void productoEscalar12 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t long
 		vectorOut[i] &= 0x0FFF;
 	}
 }
-/* Función ejercicio 4 */
+/* Función ejercicio 5 */
 #define M 3 // Longitud de la ventana
 
 void filtroVentana10(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitudVectorIn)
@@ -67,7 +67,7 @@ void filtroVentana10(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitu
     }
 }
 
-/* Función ejercicio 5 */
+/* Función ejercicio 6 */
 void pack32to16 (int32_t * vectorIn, int16_t *vectorOut, uint32_t longitud)
 {
 	uint32_t i=0;
@@ -76,7 +76,7 @@ void pack32to16 (int32_t * vectorIn, int16_t *vectorOut, uint32_t longitud)
 	}
 }
 
-/* Función ejercicio 6 */
+/* Función ejercicio 7 */
 int32_t max (int32_t * vectorIn, uint32_t longitud)
 {
 	int32_t i=0,aux=vectorIn[0];
@@ -88,3 +88,20 @@ int32_t max (int32_t * vectorIn, uint32_t longitud)
 	}
 	return aux;
 }
+
+/* Función ejercicio 8 */
+void downsampleM (int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, uint32_t N)
+{
+	uint32_t n = 0;
+
+	while(longitud--)
+	{
+		if(n%N != 0){
+			*vectorOut++ = *vectorIn++;
+		}else {
+			vectorIn++;
+		}
+		n++;
+	}
+}
+
