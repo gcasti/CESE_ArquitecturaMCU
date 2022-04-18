@@ -6,6 +6,7 @@
 \selectlanguage{spanish}
 \usepackage[utf8]{inputenc}
 
+\usepackage{listings}
 
 \usepackage{amsmath,amssymb,amsfonts,latexsym,cancel}  
 \usepackage[table]{xcolor} 				%Para poner color en las tablas
@@ -212,7 +213,31 @@ Generalmente, el acceso a los recursos de hardware es gestionado por el sistema 
 Otra ventaja de este mecanismo de acceso es que el programador de las tareas de usuario puede abstraerse de los detalles del acceso al hardware ya que el sistema operativo es quién provee el servicio necesario para la excepción SVC(mediante el \textit{driver} del periférico) facilitando el desarrollo de las aplicación.
 
  
+\section*{ISA - \textit{Instruction Set Architecture}}
 
+\subsection*{1. ¿Qué son los sufijos y para qué se los utiliza? Dé un ejemplo}
+
+\subsection*{2. ¿Para qué se utiliza el sufijo ‘s’? Dé un ejemplo}
+
+Normalmente, las operaciones de procesamiento de datos no afectan los campos de condición N,Z,C y V  (exeptuando las comparaciones dónde esto es el único efecto). La incorporación del sufijo ‘s’ permite actualizar los campos de condiciones luego de ejecutar la instrucción correspondiente, naturalmente esta capacidad constituye un ahorro de instrucciones necesarias, por ejemplo al que implementar un bloque de ejecución condicional.
+
+\begin{lstlisting}[language=C]
+	...
+.label:
+	mov r1,4		@ carga el el registro r1 con el numero 4 
+	...	
+	subs r1, 1		@ decrementa el registro actualizando los flags			
+	bne .label		@ verifica si el flag es Z=1
+	...
+
+\end{lstlisting}
+
+
+\subsection*{3. ¿Qué utilidad tiene la implementación de instrucciones de aritmética saturada? Dé un ejemplo con operaciones con datos de 8 bits.}
+
+\subsection*{4. Describa brevemente la interfaz entre assembler y C ¿Cómo se reciben los argumentos de las funciones? ¿Cómo se devuelve el resultado? ¿Qué registros deben guardarse en la pila antes de ser modificados?}
+
+\subsection*{5. ¿Qué es una instrucción SIMD? ¿En qué se aplican y que ventajas reporta su uso? Dé un ejemplo}
 
 
 \end{document}
