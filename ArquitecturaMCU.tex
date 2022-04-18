@@ -217,6 +217,21 @@ Otra ventaja de este mecanismo de acceso es que el programador de las tareas de 
 
 \subsection*{1. ¿Qué son los sufijos y para qué se los utiliza? Dé un ejemplo}
 
+Los sufijos son opciones de configuración que se anexan a las instrucciones modificando aspectos de la ejecución de la misma. Existen de diferentes tipos, por ejemplo sufijos de tamaño que modifican el tamaño del operador con el que trabaja la instrucción o sufijos de condición (ver pregunta 2).
+
+Ejemplo:
+\begin{lstlisting}[language=C]
+	...
+	ldrh r1		@ Carga a un dato de 16 bits(halfword) sin signo 
+	...		@ empleando el sufijo h 
+	...
+	strsh r1,[r0]	@ Almacena un dato de 16 bits son signo en la direccion r0	
+	...
+\end{lstlisting}
+
+
+
+
 \subsection*{2. ¿Para qué se utiliza el sufijo ‘s’? Dé un ejemplo}
 
 Normalmente, las operaciones de procesamiento de datos no afectan los campos de condición N,Z,C y V  (exeptuando las comparaciones dónde esto es el único efecto). La incorporación del sufijo ‘s’ permite actualizar los campos de condiciones luego de ejecutar la instrucción correspondiente, naturalmente esta capacidad constituye un ahorro de instrucciones necesarias, por ejemplo al que implementar un bloque de ejecución condicional.
@@ -229,7 +244,6 @@ Normalmente, las operaciones de procesamiento de datos no afectan los campos de 
 	subs r1, 1		@ decrementa el registro actualizando los flags			
 	bne .label		@ verifica si el flag es Z=1
 	...
-
 \end{lstlisting}
 
 
