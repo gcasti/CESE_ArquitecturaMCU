@@ -149,13 +149,16 @@ int main(void)
   asm_productoEscalar12(vectorData1_16, vectorData3_16, longN, escalar_16);*/
 
 /*************************************************************************
-// Ejercicio 5
+// Ejercicio 5*/
   #define N 10
   uint16_t testIN[N]={1,2,3,4,5,6,7,8,9,10};
-  uint16_t testOUT1[N];
+  uint16_t testOUT1[N]={0,0,0,0,0,0,0,0,0,0};
+
+  // Se prueban las funciones utilizando una ventana movil de 3 elementos
 
   filtroVentana10(testIN, testOUT1, N);
-*************************************************************************/
+  asm_filtroVentana10(testIN, testOUT1, N);
+/*************************************************************************/
 /*************************************************************************
 // Ejercicio 6
   #define N 10
@@ -181,7 +184,7 @@ int main(void)
   maximo=asm_max(testIN, longitud);
 /*************************************************************************/
 /*************************************************************************
-// Ejercicio 8*/
+// Ejercicio 8
 
 #define N 15		// Cantidad de elementos utilizados para test
 #define N_MAX 100

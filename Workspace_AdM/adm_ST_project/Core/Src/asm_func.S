@@ -12,6 +12,7 @@
 .global asm_max
 .global asm_invertir
 .global asm_downsampleM
+.global asm_filtroVentana10
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
@@ -222,4 +223,54 @@
 		subs r2,1
 		bne .asm_downsampleM_for
 		pop {r4-r7}
+		bx lr
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@	void asm_filtroVentana10(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitudVectorIn);
+@
+@ Parametros recibidos:
+@   r0: puntero al vector de entrada
+@   r1:	puntero al vector que se utiliza como salida
+@	r2: longitud del vector de entrada
+@
+@ Valor de retorno:
+@   r0: NULL
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.thumb_func
+	asm_filtroVentana10:
+	push {r4-r9}
+	mov r6,r0
+	mov r8,r0
+	mov r4,0	@registro que tendrá la suma de los valores en la ventana
+	mov r9,3	@longitud de la ventana
+
+@bucle que carga r4 acumulando los valores iniciales de la ventana
+	mov r5,r9 	@contador de los valores en la ventana
+	.asm_ventana_for:
+		ldrh r3,[r6],2
+		adds r4, r3
+		subs r5,1
+		bne .asm_ventana_for
+
+		@r0 contiene la dirección del primer valor de la ventana
+		@r6 contiene la dirección del último valor de la ventana
+		sdiv r3,r4,r9
+		strh r3,[r1],2
+
+	.asm_filtro_for:
+		cmp r2,r9		@comprueba si se alcanza el final del vector
+		IT EQ
+		moveq r6,r8		@implenta el "rool-over"
+
+		ldrh r7,[r0],2	@carga el valor a retirar
+		subs r4,r7		@resta del acumulador
+		ldrh r7,[r6],2	@carga el valor a sumar
+		adds r4,r7		@suma el valor en el acumulador
+
+		sdiv r3,r4,r9
+		strh r3,[r1],2
+
+		subs r2,1
+		bne .asm_filtro_for
+		pop {r4-r9}
 		bx lr
