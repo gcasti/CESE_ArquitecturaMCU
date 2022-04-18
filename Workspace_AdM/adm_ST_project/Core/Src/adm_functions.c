@@ -92,7 +92,7 @@ int32_t max (int32_t * vectorIn, uint32_t longitud)
 /* Función ejercicio 8 */
 void downsampleM (int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, uint32_t N)
 {
-	uint32_t n = 0;
+	uint32_t n = 1;
 
 	while(longitud--)
 	{

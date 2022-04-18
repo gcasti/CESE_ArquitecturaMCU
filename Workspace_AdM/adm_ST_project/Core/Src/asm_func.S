@@ -11,6 +11,7 @@
 .global asm_productoEscalar12
 .global asm_max
 .global asm_invertir
+.global asm_downsampleM
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
@@ -191,5 +192,34 @@
 		subs r1,1
 		bne .asm_invertir_for
 		bx lr
-
-
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@	void asm_downsampleM (int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, uint32_t M);
+@
+@ Parametros recibidos:
+@   r0: puntero al vector de entrada
+@   r1:	puntero al vector que se utiliza como salida
+@	r2: longitud del vector
+@	r3: Posición a decimar
+@
+@ Valor de retorno:
+@   r0: NULL
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.thumb_func
+	asm_downsampleM:
+	push {r4-r7}
+	mov r5,1		@ contador de la posición del vector leída
+	mov r6,1		@ cantidad de múltiplos de N
+	mov r7,r3		@ muestra a eliminar
+	.asm_downsampleM_for:
+		ldr r4,[r0],4		@ carga el valor del vector de entrada y aumenta el puntero
+		cmp r5,r7
+		ITEE NE
+		strne r4,[r1],4		@ copia en el vector de salida el valor
+		addeq r6,1			@ se encontró un múltiplo de M
+		muleq r7,r3,r6		@ se encontró un múltiplo de M
+		add r5,1
+		subs r2,1
+		bne .asm_downsampleM_for
+		pop {r4-r7}
+		bx lr

@@ -166,7 +166,7 @@ int main(void)
   pack32to16 (testIN, testOUT, longitud);
 /*************************************************************************/
 /*************************************************************************
-// Ejercicio 7*/
+// Ejercicio 7
 
 #define N 10
 #define N_MAX 100
@@ -181,7 +181,7 @@ int main(void)
   maximo=asm_max(testIN, longitud);
 /*************************************************************************/
 /*************************************************************************
-// Ejercicio 8
+// Ejercicio 8*/
 
 #define N 15		// Cantidad de elementos utilizados para test
 #define N_MAX 100
@@ -189,12 +189,12 @@ int main(void)
   int32_t testIN[N],testOUT[N];
   uint32_t longitud=N;
 
-  // Se carga el vector de test con números aleatorios para buscar el máximo
   for(int i=0 ; i<longitud ; i++ ){
-	  testIN[i]= rand() % N_MAX;
+	  testIN[i]= i+1;
   }
 
   downsampleM(testIN, testOUT, longitud, M);
+  asm_downsampleM(testIN, testOUT, longitud, M);
 /*************************************************************************/
 /*************************************************************************
 // Ejercicio 9

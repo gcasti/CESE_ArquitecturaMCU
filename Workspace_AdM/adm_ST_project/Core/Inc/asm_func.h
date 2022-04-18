@@ -21,5 +21,8 @@ void asm_productoEscalar12 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t 
 /* Función ejercicio 7 */
 int32_t asm_max (int32_t * vectorIn, uint32_t longitud);
 
+/* Función ejercicio 8 */
+void asm_downsampleM (int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, uint32_t N);
+
 /* Función ejercicio 9 */
 void asm_invertir (uint16_t * vector, uint32_t longitud);
