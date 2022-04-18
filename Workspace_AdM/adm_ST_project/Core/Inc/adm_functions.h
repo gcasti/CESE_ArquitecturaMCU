@@ -22,4 +22,19 @@ void productoEscalar16 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t long
 /* Función ejercicio 4 */
 void productoEscalar12 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar);
 
+/* Función ejercicio 5 */
+void filtroVentana10(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitudVectorIn);
+
+/* Función ejercicio 6 */
+void pack32to16 (int32_t * vectorIn, int16_t *vectorOut, uint32_t longitud);
+
+/* Función ejercicio 7 */
+int32_t max (int32_t * vectorIn, uint32_t longitud);
+
+/* Función ejercicio 8 */
+void downsampleM (int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, uint32_t N);
+
+/* Función ejercicio 9 */
+void invertir (uint16_t * vector, uint32_t longitud);
+
 #endif /* INC_ADM_FUNCTIONS_H_ */

@@ -21,6 +21,7 @@
 #include "asm_func.h"
 #include "main.h"
 #include "string.h"
+#include <stdlib.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -105,7 +106,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
 
-  uint32_t longN = 5;
+ /* uint32_t longN = 5;
   uint32_t vectorData0_32[5]={100,200,300,400,500};
   uint32_t vectorData1_32[5]={100000,200000,300000,400000,500000};
   uint32_t vectorData2_32[5] ;
@@ -117,32 +118,103 @@ int main(void)
   uint32_t escalar_16 = 0;
 
   uint16_t vectorData3_16[5]= {1,2,100,4000,5000};
-  uint16_t vectorData4_16[5];
+  uint16_t vectorData4_16[5];*/
 
-/* Se comprueba el funcionamiento de la función en C del ejercicio 1 */
-//  zeros(vectorData1_32, longN);
-  /* Se comprueba el funcionamiento de la función en ASM del ejercicio 1 */
-  asm_zeros(vectorData1_32, longN);
+/*// Se comprueba el funcionamiento de la función en C del ejercicio 1
+  zeros(vectorData1_32, longN);
+  // Se comprueba el funcionamiento de la función en ASM del ejercicio 1
+  asm_zeros(vectorData1_32, longN);*/
 
-/* Se comprueba el funcionamiento de la función en C del ejercicio 2 */
+/*// Se comprueba el funcionamiento de la función en C del ejercicio 2
   escalar_32=4;
   productoEscalar32(vectorData0_32, vectorData1_32, longN, escalar_32);
 
-  /* Se comprueba el funcionamiento de la función en ASM ejercicio 2 */
+  // Se comprueba el funcionamiento de la función en ASM ejercicio 2
   asm_zeros(vectorData2_32, longN);
-  asm_productoEscalar32(vectorData0_32, vectorData2_32, longN, escalar_32);
+  asm_productoEscalar32(vectorData0_32, vectorData2_32, longN, escalar_32);*/
 
 
-/* Se comprueba el funcionamiento de la función del ejercicio 3 */
+/*// Se comprueba el funcionamiento de la función del ejercicio 3
   escalar_16=1000;
   productoEscalar16(vectorData1_16, vectorData2_16, longN, escalar_16);
+  // Se comprueba el funcionamiento de la función en ASM ejercicio 3
+  asm_productoEscalar16(vectorData1_16, vectorData3_16, longN, escalar_16);*/
 
-  asm_productoEscalar16(vectorData1_16, vectorData3_16, longN, escalar_16);
 
-
-/* Se comprueba el funcionamiento de la función del ejercicio 4 */
+/* Se comprueba el funcionamiento de la función del ejercicio 4
   escalar_16=1000;
-  productoEscalar12(vectorData3_16, vectorData4_16, longN, escalar_16);
+  productoEscalar12(vectorData1_16, vectorData2_16, longN, escalar_16);
+
+// Se comprueba el funcionamiento de la función en ASM ejercicio 4
+  asm_productoEscalar12(vectorData1_16, vectorData3_16, longN, escalar_16);*/
+
+/*************************************************************************
+// Ejercicio 5
+  #define N 10
+  uint16_t testIN[N]={1,2,3,4,5,6,7,8,9,10};
+  uint16_t testOUT1[N];
+
+  filtroVentana10(testIN, testOUT1, N);
+*************************************************************************/
+/*************************************************************************
+// Ejercicio 6
+  #define N 10
+  int32_t testIN[N]={654265,2,3,4,5,6,7,8,9,10};
+  int16_t testOUT[N];
+  uint32_t longitud=N;
+
+  pack32to16 (testIN, testOUT, longitud);
+/*************************************************************************/
+/*************************************************************************
+// Ejercicio 7*/
+
+#define N 10
+#define N_MAX 100
+  int32_t maximo,testIN[N];
+  uint32_t longitud=N;
+
+  // Se carga el vector de test con números aleatorios para buscar el máximo
+  for(int i=0 ; i<longitud ; i++ ){
+	testIN[i]= rand() % N_MAX;
+  }
+ // maximo=max(testIN, longitud);
+  maximo=asm_max(testIN, longitud);
+/*************************************************************************/
+/*************************************************************************
+// Ejercicio 8
+
+#define N 15		// Cantidad de elementos utilizados para test
+#define N_MAX 100
+#define M 4			// Valor a decimar
+  int32_t testIN[N],testOUT[N];
+  uint32_t longitud=N;
+
+  // Se carga el vector de test con números aleatorios para buscar el máximo
+  for(int i=0 ; i<longitud ; i++ ){
+	  testIN[i]= rand() % N_MAX;
+  }
+
+  downsampleM(testIN, testOUT, longitud, M);
+/*************************************************************************/
+/*************************************************************************
+// Ejercicio 9
+
+#define N 10
+
+  uint16_t testIN1[N],testIN2[N];
+  uint32_t longitud=N;
+
+  // Se carga el vector de test
+  for(int i=0 ; i<longitud ; i++ ){
+	  testIN1[i]= i;
+	  testIN2[i]= i;
+  }
+
+  invertir(testIN1, longitud);
+  asm_invertir(testIN2, longitud);
+
+/*************************************************************************/
+
 
   /* USER CODE END 2 */
 

@@ -8,6 +8,9 @@
 .global asm_zeros
 .global asm_productoEscalar32
 .global	asm_productoEscalar16
+.global asm_productoEscalar12
+.global asm_max
+.global asm_invertir
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
@@ -90,7 +93,6 @@
 		bne .asm_producto32_for
 		pop {r4}
 		bx lr
-
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
 @	 void productoEscalar16 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar);
@@ -107,11 +109,87 @@
 .thumb_func
 	asm_productoEscalar16:
 		push {r4}
-	.asm_producto12_for:
+	.asm_producto16_for:
 		ldrh r4,[r0],2
 		mul r4,r3
 		strh r4,[r1],2
 		subs r2,1
-		bne .asm_producto12_for
+		bne .asm_producto16_for
 		pop {r4}
 		bx lr
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@	 void asm_productoEscalar12 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar);
+@
+@ Parametros recibidos:
+@   r0: puntero al vector de entrada
+@   r1:	puntero al vector que se utiliza como salida
+@	r2: longitud del vector
+@	r3: escalar
+@
+@ Valor de retorno:
+@   r0: NULL
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.thumb_func
+	asm_productoEscalar12:
+		push {r4,r5}
+	.asm_producto12_for:
+		ldrh r4,[r0],2		@ carga el valor de un dato del vector
+		mov r5, 0x0FFF		@ carga la máscara en un registro
+		and r4,r5			@ toma los 12 bits del dato
+		mul r4,r3			@ realiza la multiplicación
+		and r4,r5			@ descarla los bits superiores si hubo overflow
+		strh r4,[r1],2
+		subs r2,1
+		bne .asm_producto12_for
+		pop {r4,r5}
+		bx lr
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@		int32_t asm_max (int32_t * vectorIn, uint32_t longitud);
+@
+@ Parametros recibidos:
+@   r0: puntero al vector de entrada
+@	r1: longitud del vector
+@
+@ Valor de retorno:
+@   r0: NULL
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.thumb_func
+	asm_max:
+	ldr r3, [r0]		@Se utiliza r3 como auxiliar para almacenar el máximo
+	.asm_max_for:
+		ldr r2,[r0],4
+		cmp r2,r3		@Se compara el valor cargado con el auxiliar
+		IT GE
+		movge r3,r2		@Se ejecuta según la actualización de los flags
+		subs r1,1
+		bne .asm_max_for
+		mov r0,r3
+		bx lr
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@		void asm_invertir (uint16_t * vector, uint32_t longitud);
+@
+@ Parametros recibidos:
+@   r0: puntero al vector de entrada
+@	r1: longitud del vector
+@
+@ Valor de retorno:
+@   r0: NULL
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.thumb_func
+	asm_invertir:
+	mov r4,r1
+	lsl r4,1
+	.asm_invertir_for:
+		ldrh r2,[r0]	 	@ carga el primer valor del vector de entrada
+		ldrh r3,[r0,r4]		@ carga el último valor del vector de entrada
+		strh r2,[r0,r4]		@ guarda el contenido de r2 en último posición del vector
+		strh r3,[r0]		@ guarda el contenido de r3 en la primer posición del vector
+		ldr r0,[r0,2]
+		subs r1,1
+		bne .asm_invertir_for
+		bx lr
+
+
