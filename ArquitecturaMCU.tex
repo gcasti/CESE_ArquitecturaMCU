@@ -84,6 +84,21 @@ embebidos compactos. Son procesadores de uso general diseñados para alta densid
 
 \subsection*{1. Describa brevemente las diferencias entre las familias de procesadores Cortex M0, M3 y M4}
 
+Las principales diferencias que pueden destacarse entre las familias de procesadores Cortex M0, M3 y M4 son:
+
+\begin{itemize}
+\item \textbf{Arquitectura:} los procesadores Cortex M0 poseen arquitectura ARMv6-M tipo Von Neumman, mientras que los M3 tienen la arquitectura ARMv7-M y los M4 la arquitectura ARMv7E-M ambas tipo Harvard. Esto se traduce en un compromiso entre costo y capacidad de procesamiento.
+
+\item \textbf{Set de instrucciones:} los M0 manejan solamente el set de instrucciones Thumb-1 de 16 bits mientras que las familias M3 y M4 incorporan el set Thumb-2. 
+
+\item \textbf{Soporte para RTOS:} las familias M3 y M4 poseen periféricos específicos como el SysTick timer o MPU(Unidad de memoria protegida) que facilitan la implementación de sistemas operativos. 
+
+\item \textbf{\textit{Hardware de procesamiento:}} los Cortex M4 incorporan unidad punto flotante (opcional), DSP y aritmética saturada, que no están presente en los M3 y M0.   
+
+\end{itemize}
+
+En lineas generales, la familia M0 posee menor capacidad de procesamiento y performance ya que está destinada a aplicaciones de bajo costo y consumo. En cambio los procesadores M3 y M4 se a orientan sistemas donde se requiere mayor procesamiento e incorporan funcionalidades para aplicaciones diversas.
+
 \subsection*{2. ¿Por qué se dice que el set de instrucciones Thumb permite mayor densidad de código? Explique}
 
 El set de instrucciones Thumb está compuesto por instrucciones de 16 bits con funciones específicas. Se dice que permite mayor densidad de código en comparación de un set de instrucciones de 32 bits exclusivamente. En muchas operaciones simples no resulta necesario emplear muchas instrucciones, un set de 16 bits es suficiente y permite optimizar la cantidad de código que se debe almacenar. 
