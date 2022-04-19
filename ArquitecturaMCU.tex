@@ -176,6 +176,16 @@ Ejemplo:
 
 \subsection*{11. Describa la secuencia de reset del microprocesador}
 
+Después de una señal de reset y antes de la ejecución del programa principal se ejecuta la secuencia de reset del microcontrolador.
+ 
+En los procesadores Cortex-M se leen las primeras dos palabras del mapa de memoria (direcciones 0x00000000 y 0x00000004 ), esta posiciones corresponden a la tabla de vectores(vector table) y contienen el valor inicial del puntero a la pila principal (\textit{Main Stack Pointer}-MSP) y del contador de programa(\textit{Program Counter}-PC).
+
+Luego que estas dos palabras son leídas, el procesador configura el MSP y el PC con dichos valores. La configuración inicial del MSP es necesaria por si ocasionalmente se produce alguna excepción, como NMI o HardFault justo luego del reset.
+
+La mayoría de los entornos de desarrollo en C realizan la actualización del MSP antes de ejecutar el programa \textit{main()} en la función llamada \textit{startup}. La inicialización de la pila en dos pasos permite utilizar una memoria externa para tal fin. 
+
+
+
 \subsection*{12. ¿Qué entiende por “core peripherals”? ¿Qué diferencia existe entre estos y el resto de los periféricos?}
 
 Se entiende como \textit{"core peripherals"} aquellos componentes que forman parte del procesador pero no son el núcleo en si mismo. Su objetivo principal es brindar soporte y ampliar las capacidades del procesador generalmente implementando funcionalidades específicas. Algunos ejemplos son:
