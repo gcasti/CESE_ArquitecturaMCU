@@ -130,6 +130,23 @@ Un modelo de registro ortogonales permite que cualquier instrucción que utilice
 
 \subsection*{8. ¿Qué ventajas presenta el uso de instrucciones de ejecución condicional (IT)? Dé un ejemplo}
 
+La principal ventaja de las instrucciones condicionales IT es que no se destruye el proceso de \textit{pipeline} comparado con un salto condicional mediante una instrucción \textit{branch}, esto se traduce en una mejora de la performance controlando el flujo del programa de forma sencilla y eficiente.
+
+Un bloque de instrucciones IT puede encadenar hasta 4 instrucciones condicionales subsecuentes, permitiendo verificar diferentes condiciones mediante el uso de sufijos como EQ, NE, etc.
+
+Ejemplo:
+
+\begin{lstlisting}[language=C]
+	...
+	ITTE EQ
+	moveq r0,10	@Se ejecuta si Z = 1
+	addseq	r0,1	@Se ejecuta si Z = 1
+	movne	r0,r1	@Se ejecuta si Z = 0		
+	...
+
+\end{lstlisting}
+
+
 \subsection*{9. Describa brevemente las excepciones más prioritarias (reset, NMI, Hardfault)}
 
 \subsubsection*{Excepción de Reset}
