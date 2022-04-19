@@ -149,7 +149,7 @@ int main(void)
   asm_productoEscalar12(vectorData1_16, vectorData3_16, longN, escalar_16);*/
 
 /*************************************************************************
-// Ejercicio 5*/
+// Ejercicio 5
   #define N 10
   uint16_t testIN[N]={1,2,3,4,5,6,7,8,9,10};
   uint16_t testOUT1[N]={0,0,0,0,0,0,0,0,0,0};
@@ -200,17 +200,17 @@ int main(void)
   asm_downsampleM(testIN, testOUT, longitud, M);
 /*************************************************************************/
 /*************************************************************************
-// Ejercicio 9
+// Ejercicio 9*/
 
-#define N 10
+#define N 11
 
   uint16_t testIN1[N],testIN2[N];
   uint32_t longitud=N;
 
   // Se carga el vector de test
   for(int i=0 ; i<longitud ; i++ ){
-	  testIN1[i]= i;
-	  testIN2[i]= i;
+	  testIN1[i]= i+1;
+	  testIN2[i]= i+1;
   }
 
   invertir(testIN1, longitud);

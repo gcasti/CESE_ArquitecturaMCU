@@ -182,16 +182,19 @@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .thumb_func
 	asm_invertir:
-	mov r4,r1
-	lsl r4,1
+	push {r4,r5}
+	sub r5,r1,1
+	lsl r5,1		@ multiplica por dos
+	add r4,r0,r5	@ r4 contiene la dirección del último elemento
+	lsr r1,1		@ divide por 2 para el contador de iteraciones
 	.asm_invertir_for:
 		ldrh r2,[r0]	 	@ carga el primer valor del vector de entrada
-		ldrh r3,[r0,r4]		@ carga el último valor del vector de entrada
-		strh r2,[r0,r4]		@ guarda el contenido de r2 en último posición del vector
-		strh r3,[r0]		@ guarda el contenido de r3 en la primer posición del vector
-		ldr r0,[r0,2]
+		ldrh r3,[r4]		@ carga el último valor del vector de entrada
+		strh r2,[r4],-2		@ guarda el contenido de r2 en la última posición del vector
+		strh r3,[r0],2		@ guarda el contenido de r3 en la primer posición del vector
 		subs r1,1
 		bne .asm_invertir_for
+		pop {r4,r5}
 		bx lr
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
