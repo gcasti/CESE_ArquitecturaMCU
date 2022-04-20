@@ -12,6 +12,7 @@
 \usepackage[table]{xcolor} 				%Para poner color en las tablas
 \usepackage{float}
 \setlength\unitlength{1mm}
+
 %*************** Agregados de formato********************
 %\usepackage{shortlst}					% Intems cortos
 \usepackage{multicol}					% Permite dividir en columnas
@@ -31,7 +32,7 @@
 \fancyhead[HR]{Universidad de Buenos Aires} % Números de página en las esquinas de los encabezados
 \fancyhead[HL]{Carrera de Especialización en Sistemas Embebidos}
 
-\fancyfoot[FL]{Arquitectura de Microprocesadores Numérico} 
+\fancyfoot[FL]{Arquitectura de Microprocesadores} 
 \fancyfoot[FR]{\thepage} 
 
 \renewcommand{\headrulewidth}{0.6pt} % Ancho de la línea horizontal bajo el encabezado
@@ -292,6 +293,17 @@ Normalmente, las operaciones de procesamiento de datos no afectan los campos de 
 \subsection*{3. ¿Qué utilidad tiene la implementación de instrucciones de aritmética saturada? Dé un ejemplo con operaciones con datos de 8 bits.}
 
 \subsection*{4. Describa brevemente la interfaz entre assembler y C ¿Cómo se reciben los argumentos de las funciones? ¿Cómo se devuelve el resultado? ¿Qué registros deben guardarse en la pila antes de ser modificados?}
+
+
+El set de instrucciones ISA de los procesadores Cortex-M posee funcionalidades que facilitan la 
+interoperabilidad entre los lenguaje de programación C y assembler. En cuanto a la interfaz entre funciones implementadas en assembler se definen en el documento \textit{Procedure Call Standard for the Arm® Architecture} para poder ejecutarse desde un un código en C.
+
+Cuando se llama una función elaborada en assembler desde un programa en C, los argumentos escritos en C se reciben en los registros r0, r1, r2 y r3 dentro de la función. El resultado se devuelve en los mismo registros dependiendo del tipo de dato a retornar la cantidad necesaria. Si la precisión del tipo de dato es menor o igual a 32 bits, se utiliza el registro r0. Si el tipo de dato es de 64 bits, el resultado se devuelve en los registros r0 y r1. Y si el tipo de dato es de 128 bits, se emplean los registros r0, r1, r2 y r3.
+
+En el caso que la función reciba más de 4 parámetros, estos se deben  colocar en la pila (stacking) y desde la función en assenmbler se deberán acceder con la instrucción \textit{Push}.
+
+Si se realizan operaciones con los registros r4 a r11, el contenido de estos debe colocarse en la pila con \textit{Push} (stacking) y al final de la  función se deben restaurar mediante \textit{Pop} (unstacking). Esta operación se realiza de forma implicita para los registros de r0 a r3.
+
 
 \subsection*{5. ¿Qué es una instrucción SIMD? ¿En qué se aplican y que ventajas reporta su uso? Dé un ejemplo}
 
