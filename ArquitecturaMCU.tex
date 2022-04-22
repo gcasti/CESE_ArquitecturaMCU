@@ -165,7 +165,16 @@ Ejemplo:
 
 \subsection*{9. Describa brevemente las excepciones más prioritarias (reset, NMI, Hardfault)}
 
-\subsubsection*{Excepción de Reset}
+
+Las excepciones reset, NMI y Hardfault son las de mayor prioridad del sistema. Todas tienen prioridad negativa y no configurable por el usuario siendo la de menor valor la más prioritaria.
+
+  \textbf{\textit{Reset:}} es la excepción de mayor prioridad (-3) se dispara cuando una de los tres tipos de reinicio del sistema se ejecuta (Power On Reset, System Reset, Processor Reset). 
+  
+  \textbf{\textit{NMI (Non-Maskable Interrupt)}}: posee prioridad -2,  puede ser generada por periféricos internos que monitorean la integridad del sistema, por ejemplo \textit{watchdogs} o \textit{Brown-Out Detector (BOD)}.
+  
+  \textbf{\textit{Hardfault:}} posee prioridad -1, es disparada cuando existe un evento de falla\textit{(fault event)}, como ejecución de una instrucción indefinida, acceso erróneo al bus del sistema o a una posición de memoria. 
+
+\subsubsection*{Excepción de Reset:}
 
 \subsubsection*{Excepción NMI(Non-Maskable Interrupt)} 
 
