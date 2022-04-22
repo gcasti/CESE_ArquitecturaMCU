@@ -165,7 +165,6 @@ Ejemplo:
 
 \subsection*{9. Describa brevemente las excepciones más prioritarias (reset, NMI, Hardfault)}
 
-
 Las excepciones reset, NMI y Hardfault son las de mayor prioridad del sistema. Todas tienen prioridad negativa y no configurable por el usuario siendo la de menor valor la más prioritaria.
 
   \textbf{\textit{Reset:}} es la excepción de mayor prioridad (-3) se dispara cuando una de los tres tipos de reinicio del sistema se ejecuta (Power On Reset, System Reset, Processor Reset). 
@@ -173,14 +172,6 @@ Las excepciones reset, NMI y Hardfault son las de mayor prioridad del sistema. T
   \textbf{\textit{NMI (Non-Maskable Interrupt)}}: posee prioridad -2,  puede ser generada por periféricos internos que monitorean la integridad del sistema, por ejemplo \textit{watchdogs} o \textit{Brown-Out Detector (BOD)}.
   
   \textbf{\textit{Hardfault:}} posee prioridad -1, es disparada cuando existe un evento de falla\textit{(fault event)}, como ejecución de una instrucción indefinida, acceso erróneo al bus del sistema o a una posición de memoria. 
-
-\subsubsection*{Excepción de Reset:}
-
-\subsubsection*{Excepción NMI(Non-Maskable Interrupt)} 
-
-
-\subsubsection*{Excepción Hardfault:}
-
 
 \subsection*{10. Describa las funciones principales de la pila. ¿Cómo resuelve la arquitectura el llamado a funciones y su retorno?}
 
@@ -310,8 +301,20 @@ Normalmente, las operaciones de procesamiento de datos no afectan los campos de 
 
 \subsection*{3. ¿Qué utilidad tiene la implementación de instrucciones de aritmética saturada? Dé un ejemplo con operaciones con datos de 8 bits.}
 
-\subsection*{4. Describa brevemente la interfaz entre assembler y C ¿Cómo se reciben los argumentos de las funciones? ¿Cómo se devuelve el resultado? ¿Qué registros deben guardarse en la pila antes de ser modificados?}
+Las instrucciones de aritmética saturada tienen la función de mantener el valor cuando se produce un desbordamiento \textit{(overflow)} del dato con el cual operan, manteniendo el valor máximo posible. Suelen utilizarse en procesamiento de señales de audio donde es preferible que el dato mantenga el valor máximo en vez de reiniciarse al producirse un desbordamiento.
 
+Ejemplo de saturación a 8 bits:
+
+\begin{lstlisting}[language=C]
+	...
+	mov r0 , 60		@coloca el 60 en r0 
+	mov r1 , 8		@coloca el 8 en r1
+	mul r0 , r1		@multiplica r0 por r1 y lo almacena en r0
+	usat r0 , #8 ,r0	@satura el valor de r0 a 8 bits r0 = 255	
+	...
+\end{lstlisting}
+
+\subsection*{4. Describa brevemente la interfaz entre assembler y C ¿Cómo se reciben los argumentos de las funciones? ¿Cómo se devuelve el resultado? ¿Qué registros deben guardarse en la pila antes de ser modificados?}
 
 El set de instrucciones ISA de los procesadores Cortex-M posee funcionalidades que facilitan la 
 interoperabilidad entre los lenguaje de programación C y assembler. En cuanto a la interfaz entre funciones implementadas en assembler se definen en el documento \textit{Procedure Call Standard for the Arm® Architecture} para poder ejecutarse desde un un código en C.
