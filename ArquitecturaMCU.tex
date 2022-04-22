@@ -250,6 +250,9 @@ Por ejemplo, si una dirección de transferencia está dentro del rango de direcc
 
 \subsection*{20. ¿Para qué se suele utilizar la excepción PendSV? ¿Cómo se relaciona su uso con el resto de las excepciones? Dé un ejemplo}
 
+La excepción  PendSV (Pended Service Call) posee nivel de prioridad configurable y es ejecutada por software. Suele utilizarse en sistemas operativos de tiempo real configurada como interrupción de baja prioridad para realizar tareas largas cuando el procesador se encuentra disponible y no haya otra interrupción que atender.
+
+
 \subsection*{21. ¿Para qué se suele utilizar la excepción SVC? Expliquelo dentro de un marco de un sistema operativo embebido.}
 
 La excepción SVC\textit{(Supervisor Call)} es de tipo 11 y su nivel de prioridad puede ser programado. Puede dispararse por la instrucción de software SVC y posee un comportamiento levemente distinto a las interrupciones de software del módulo NVIC(por ejemplo, \textit{Software Trigger Interrupt Register,STIR}). Las interrupciones pueden ser imprecisas debido a que se ejecutan algunas instrucciones antes de su atención, por ejemplo verificación de la existencia de otra interrupción pendiente. La excepción SVC es precisa y se ejecuta inmediatamente luego de ser llamada, salvo que haya otra excepción de mayor prioridad.
@@ -312,6 +315,10 @@ Si se realizan operaciones con los registros r4 a r11, el contenido de estos deb
 
 
 \subsection*{5. ¿Qué es una instrucción SIMD? ¿En qué se aplican y que ventajas reporta su uso? Dé un ejemplo}
+
+Las SIMD \textit{(Single Instruction Multiple Data)} son un tipo de instrucción que permiten realizar múltiples operaciones de datos en paralelo dividiendo el largo total de la palabra del processador(32 bits) en palabras de menor tamaño (8 o 16 bits).
+
+La aplicaciones mas comunes de este tipo de instrucciones es en procesamiento de audio realizando cálculos del canal derecho e izquierdo al mismo tiempo. Otra aplicación típica es en el procesamiento de imágenes, donde los colores RGB de cada pixel de una imagen pueden representarse con 8 bits, la utilización de instrucciones SIMD permiten procesarse en paralelo.
 
 
 \end{document}
