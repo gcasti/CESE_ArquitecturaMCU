@@ -256,6 +256,13 @@ Se debe tener en cuenta que durante el procedimiento antes descrito si el proces
 
 \subsection*{17. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?}
 
+Durante el procedimiento de stacking ante el llamado de una función, una interrupción o una excepción se almacenan los registros r0-r3,r12, LR y PSR para conservar el contexto de ejecución.
+
+En los procesadores Cortex-M4 que poseen unidad de punto flotante(FPU), adicionalmente se deben almacenar los registros s0 a s15 para conservar el estado de procesamiento. Esto implica un retardo adicional que solo se justifica si la FPU está siendo utilizada dentro de la función o interrupción y debe analizarse si efectivamente es necesario.
+
+Para optimizar la velocidad del proceso del stacking, el manejador de interrupción verifica si el programador utiliza la FPU mediante un bit en el estado de control y a su vez verifica si la función efectivamente modifica los registros de la FPU, en el caso de no necesitarse se obtiene una mejora en la  performance al no realizar el stacking de estos registros. 
+
+
 \subsection*{16. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival}
 
 \subsection*{17. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?}
