@@ -236,6 +236,24 @@ La principal ventaja que aporta el uso de CMSIS es lograr una interfaz simple y 
 
 \subsection*{15. Cuando ocurre una interrupción, asumiendo que está habilitada ¿Cómo opera el microprocesador para atender a la subrutina correspondiente? Explique con un ejemplo}
 
+Cuando ocurre una interrupción, o una excepción, la secuencia de eventos que se ejecutan son:
+
+\begin{itemize}
+\item Empleando el bus de datos se almacenan los registros en el \textit{stack} mediante la operación PUSH para preservar el contexto de ejecución del programa principal. 
+\item En paralelo con la operación anterior, en el bus de instrucciones se realiza la carga del vector de interrupciones.
+\item Se busca la dirección de la función a ejecutar que corresponde a la interrupción a ser atendida, realizando el \textit{fetch} de las instrucciones correspondientes.
+\item Se actualizan los registros del NVIC y del procesador. Los principales son el PSR \textit{(Program Status Register)}, el LR \textit{(Link Register)}, el PC \textit{(Program Counter)} y el \textit{Stack Pointer} puede ser PSP o el MSP. 
+
+\item Se ejecutan las instrucciones correspondientes a la interrupción.
+
+\item Se restauran los registros colocados en el \textit{stack} realizando un POP de los mismos.
+\item Se actualizan los registros del NVIC y del procesador.
+\item Se ejecutan las instrucciones del programa principal correspondientes al momento en que el programa fue interrumpido.
+
+\end{itemize}
+
+Se debe tener en cuenta que durante el procedimiento antes descrito si el procesador se encontraba en modo usuario \textit{(thread)} se conmuta a modo privilegiado \textit{(handler)}. El procesador determinará el modo de ejecución al cual retorna utilizando el registro LR que se almacenó en el \textit{stack} al atender la interrupción.
+
 \subsection*{17. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?}
 
 \subsection*{16. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival}
