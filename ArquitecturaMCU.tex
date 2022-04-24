@@ -223,8 +223,12 @@ La integración de estos periféricos favorece a la portabilidad de software den
 
 \subsection*{13. ¿Cómo se implementan las prioridades de las interrupciones? Dé un ejemplo}
 
-Después de un proceso de reset o inicio del sistema, todas las interrupciones se encuentras deshabilitadas y un nivel de prioridad con el valor 0. Antes de ser usadas, opcionalmente pueden programarse los niveles de prioridad.
+Después de un proceso de reset o inicio del sistema, todas las interrupciones se encuentran deshabilitadas y un nivel de prioridad con valor nulo. Antes de ser usadas, opcionalmente pueden programarse los niveles de prioridad.
 
+La familia de procesadores Cortex-M tienen un controlador de interrupciones configurable que puede soportar hasta 240 interrupciones con niveles de prioridades desde 8 hasta 256. 
+La configuración de estas prioridades se logra programando el NVIC, activando la interrupción y asignándole un nivel de prioridad. Los registros del NVIC están mapeados en memoria con una localización es fija. La manera estándar de acceder a ellos es a través de las definiciones y las APIs de la librería CMSIS-Core.
+
+La asignación de las prioridades sirven para reducir el tiempo de respuesta de la aplicación. Por ejemplo, periféricos que son críticos pueden tener asignado interrupciones con alta prioridad que aseguren su atención de forma inmediata suspendiendo otras tareas.
 
 \subsection*{14. ¿Qué es el CMSIS? ¿Qué función cumple? ¿Quién lo provee? ¿Qué ventajas aporta?}
 
@@ -262,8 +266,22 @@ En los procesadores Cortex-M4 que poseen unidad de punto flotante(FPU), adiciona
 
 Para optimizar la velocidad del proceso del stacking, el manejador de interrupción verifica si el programador utiliza la FPU mediante un bit en el estado de control y a su vez verifica si la función efectivamente modifica los registros de la FPU, en el caso de no necesitarse se obtiene una mejora en la  performance al no realizar el stacking de estos registros. 
 
-
 \subsection*{16. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival}
+
+\subsubsection*{Tail chaining} Es un mecanismo de \textit{hardware} que permite gestionar de manera eficiente los casos donde el procesador se encuentra atendiendo una interrupción y se genera otra interrupción de igual prioridad.
+En lugar de restaurar los registros desde el \textit{stack} volviendo al programa principal para luego nuevamente apilarlos, el procesador saltea estos pasos y directamente atiende la interrupción pendiente. De esta forma se mantiene en modo de ejecución \textit{Handler} durante el servicio de todas las interrupciones posponiendo el pasaje a modo \textit{Thread} de forma ineficiente.
+
+Este mecanismo constituye un manejo eficiente de las interrupciones reduciendo el número de accesos al \textit{stack} mejorando la performance del sistema.
+
+\subsubsection*{Late arrival} 
+
+Es otro mecanismo de \textit{hardware} que incorporan los procesadores Cortex-M para el manejo eficiente de las interrupciones. 
+Atiende los casos en los que cuando se produce una interrupción y el procesador comienza la operación de \textit{stacking} de los registros, otra interrupción de mayor prioridad tiene lugar.
+
+En esos casos, si la interrupción de mayor prioridad ocurre antes del proceso de \textit{fech} de las instrucciones  de la interrupción que llegó primero, directamente se cargan las instrucciones de la interrupción de mayor prioridad.
+
+
+
 
 \subsection*{17. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?}
 
