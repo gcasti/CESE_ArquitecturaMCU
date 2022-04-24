@@ -175,6 +175,25 @@ Las excepciones reset, NMI y Hardfault son las de mayor prioridad del sistema. T
 
 \subsection*{10. Describa las funciones principales de la pila. ¿Cómo resuelve la arquitectura el llamado a funciones y su retorno?}
 
+La pila \textit{(Stack)}  es un bloque consecutivo de datos almacenados en memoria que puede ser utilizado por el control interno del microcontrolador o por el desarrollador de software para almacenar datos temporalmente. 
+
+Para operar sobre la pila se emplea al menos un puntero generalmente conocido como \textit{stack pointer (SP)}. En la familia de procesadores ARM se dispone de dos tipos de punteros, el MSP \textit{(main stack pointer)} y el PSP \textit{(process stack pointer)}(descriptos en la pregunta 5).
+
+La pila tiene una estructura de datos tipo LIFO \textit{(Last-In-First-Out)}, en los procesadores ARM existe una instrucción para almacenar datos en la pila (PUSH) y otra instrucción para leerlos (POP).
+
+Algunos de los usos de la pila son:
+\begin{itemize}
+\item Almacenamiento temporal de datos ante un llamado a una función. 
+
+\item Almacenamiento de variables locales.
+
+\item Almacenamiento del estado del procesador (registros) cuando se produce una excepción o interrupción.
+
+\item Almacenamiento de los parámetros de funciones y subrutinas, siguiendo el Procedure Call Standard. (Descripto en la pregunta 4 - ISA)
+\end{itemize}
+
+Ante el llamado de una función o subrutina que posee argumentos los primeros cuatro parámetros se pasan en los registros r0 a r3 y a partir del quinto parámetro se pasan por el stack realizando una operación PUSH y luego POP desde la función. El retorno de valores se realiza de forma similar a la inversa.   
+
 \subsection*{11. Describa la secuencia de reset del microprocesador}
 
 Después de una señal de reset y antes de la ejecución del programa principal se ejecuta la secuencia de reset del microcontrolador.
