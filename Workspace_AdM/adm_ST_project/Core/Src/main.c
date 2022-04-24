@@ -160,13 +160,16 @@ int main(void)
   asm_filtroVentana10(testIN, testOUT1, N);
 /*************************************************************************/
 /*************************************************************************
-// Ejercicio 6
+// Ejercicio 6*/
   #define N 10
   int32_t testIN[N]={654265,2,3,4,5,6,7,8,9,10};
-  int16_t testOUT[N];
+  int16_t testOUT1[N];
+  int16_t testOUT2[N];
   uint32_t longitud=N;
 
-  pack32to16 (testIN, testOUT, longitud);
+  pack32to16 (testIN, testOUT1, longitud);
+  asm_pack32to16 (testIN, testOUT2, longitud);
+
 /*************************************************************************/
 /*************************************************************************
 // Ejercicio 7
@@ -200,7 +203,7 @@ int main(void)
   asm_downsampleM(testIN, testOUT, longitud, M);
 /*************************************************************************/
 /*************************************************************************
-// Ejercicio 9*/
+// Ejercicio 9
 
 #define N 11
 
